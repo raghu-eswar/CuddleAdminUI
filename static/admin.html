@@ -31,27 +31,60 @@
         <aside>
             <nav>
                 <div class="nav-links">
-                    <ul>
-                        <li>
+                    <div>
+                        <div class="visible-nav-link" onclick="showSubMenu(event)">
                             <span class="menubar-icon">
                                 <span><span></span></span>
                             <span><span></span></span>
                             </span>
-                            <button class="nav-link">Transactions</button>
-                        </li>
-                        <li><span><img src="../images/settings-icon.png" alt=""></span><button class="nav-link">System Settings</button></li>
-                        <li>
+                            <button class="nav-link" onclick="triggerParent(event)">Transactions</button>
+                        </div>
+                        <div class="hidden-div"></div>
+                    </div>
+                    <div>
+                        <div class="visible-nav-link" onclick="showSubMenu(event)">
+                            <span><img src="../images/settings-icon.png" alt=""></span>
+                            <button class="nav-link" onclick="triggerParent(event)">System Settings</button>
+                        </div>
+                        <div class="hidden-div"></div>
+                    </div>
+                    <div>
+                        <div class="visible-nav-link" onclick="showSubMenu(event)">
                             <span class="custom-symbol-icon" style="background-color: lightgray;">
                                 <span class="icon-symbol" style="color: black;">&#63;</span>
                             </span>
-                            <button class="nav-link">Suggested Questions</button></li>
-                        <li><span><img src="../images/lock-icon .png" alt=""></span><button class="nav-link">Authorization</button></li>
-                    </ul>
+                            <button class="nav-link" onclick="triggerParent(event)">Suggested Questions</button>
+                        </div>
+                        <div class="hidden-div"></div>
+                    </div>
+                    <div>
+                        <div class="visible-nav-link" onclick="showSubMenu(event)">
+                            <span><img src="../images/lock-icon .png" alt=""></span>
+                            <button class="nav-link" onclick="triggerParent(event)">Authorization</button>
+                        </div>
+                        <div class="hidden-div">
+                            <div class="visible-nav-link">
+                                <span></span>
+                                <button class="nav-link">Users</button>
+                            </div>
+                            <div class="visible-nav-link">
+                                <span></span>
+                                <button class="nav-link">Groups</button>
+                            </div>
+                            <div class="visible-nav-link">
+                                <span></span>
+                                <button class="nav-link">Permissions</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="nav-links">
-                    <ul>
-                        <li><span><img src="../images/dummy-person-icon.jpg" alt=""></span><button class="nav-link">Raghu Eswar</button></li>
-                    </ul>
+                    <div>
+                        <div class="visible-nav-link">
+                            <span><img src="../images/dummy-person-icon.jpg" alt=""></span>
+                            <button class="nav-link">Raghu Eswar</button>
+                        </div>
+                    </div>
                 </div>
             </nav>
         </aside>
@@ -60,7 +93,7 @@
         </main>
 
     </div>
-
+    <script src="../script/script.js"></script>
 </body>
 
 </html>

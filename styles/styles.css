@@ -113,23 +113,24 @@ nav {
     justify-content: space-between;
 }
 
-.nav-links>ul>li {
+.visible-nav-link {
     height: 4vmax;
     display: flex;
     align-items: center;
     text-decoration: none;
     color: rgba(245, 245, 245, 0.7);
+    cursor: pointer;
 }
 
-.nav-links>ul>li:hover {
+.visible-nav-link:hover {
     box-shadow: inset 0px 0px 25px 3px rgba(245, 245, 245, 0.2)
 }
 
-.nav-links>ul>li:active {
+.visible-nav-link:active {
     box-shadow: inset 0px 0px 30px 3px rgba(245, 245, 245, 0.4)
 }
 
-.nav-links>ul>li>span>img {
+.visible-nav-link>span>img {
     width: 1.5vw;
     height: 1.5vw;
     border-radius: 50%;
@@ -143,6 +144,11 @@ nav {
     background-color: transparent;
     outline: none;
     border: none;
+    cursor: pointer;
+}
+
+.hidden-div {
+    display: none;
 }
 
 main {
