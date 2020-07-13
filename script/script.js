@@ -16,12 +16,12 @@ usersList.push(user1, user2, user3, user1, user2, user3);
 
 function showUserList() {
     let data = document.getElementById("data");
-    let adminOptions = createAdminOptions();
-    let searchBar = createSearchBar();
-    let usersData = createUsersData();
-    data.appendChild(adminOptions);
-    data.appendChild(searchBar);
-    data.appendChild(usersData);
+    while (data.firstChild) {
+        data.firstChild.remove();
+    }
+    data.appendChild(createAdminOptions());
+    data.appendChild(createSearchBar());
+    data.appendChild(createUsersData());
 }
 
 function createAdminOptions() {
