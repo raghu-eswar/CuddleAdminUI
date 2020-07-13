@@ -59,11 +59,11 @@
                     </div>
                     <div>
                         <div class="visible-nav-link" onclick="showSubMenu(event)">
-                            <span><img src="../images/lock-icon .png" alt=""></span>
+                            <span><img src="../images/lock-icon.png" alt=""></span>
                             <button class="nav-link" onclick="triggerParent(event)">Authorization</button>
                         </div>
                         <div class="hidden-div">
-                            <div class="visible-nav-link">
+                            <div class="visible-nav-link" onclick="showUserList()">
                                 <span></span>
                                 <button class="nav-link">Users</button>
                             </div>
@@ -90,6 +90,7 @@
         </aside>
 
         <main>
+            <div id="data"></div>
         </main>
 
     </div>
