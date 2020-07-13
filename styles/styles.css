@@ -56,7 +56,12 @@ header {
     border-radius: 10%;
     box-shadow: 0px 0px 2px 2px blueviolet;
     outline: none;
-    border: 0;
+    border: none;
+    cursor: pointer;
+}
+
+#page-name:active {
+    box-shadow: inset 0 0 2px 20px rgb(132, 0, 255);
 }
 
 #query-section {
@@ -82,6 +87,7 @@ header {
     width: 88%;
     height: 100%;
     font-size: 1.2rem;
+    outline: none;
 }
 
 #query-submit-button {
@@ -90,6 +96,12 @@ header {
     outline: none;
     border: none;
     box-shadow: 0 0 1px 1px lightgray;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+#query-submit-button:active {
+    box-shadow: inset 0 0 2px 20px rgba(211, 211, 211, 0.5);
 }
 
 .content {
@@ -123,11 +135,11 @@ nav {
 }
 
 .visible-nav-link:hover {
-    box-shadow: inset 0px 0px 25px 3px rgba(245, 245, 245, 0.2)
+    box-shadow: inset 0px 0px 25px 3px rgba(245, 245, 245, 0.3)
 }
 
 .visible-nav-link:active {
-    box-shadow: inset 0px 0px 30px 3px rgba(245, 245, 245, 0.4)
+    box-shadow: inset 0px 0px 30px 3px rgba(245, 245, 245, 0.5)
 }
 
 .visible-nav-link>span>img {
@@ -242,6 +254,12 @@ main {
     box-shadow: 0px 0px 2px 2px blueviolet;
     outline: none;
     border: 0;
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+#admin-options>div>button:active {
+    box-shadow: inset 0 0 2px 20px rgb(132, 0, 255);
 }
 
 #search {
@@ -267,6 +285,7 @@ main {
     width: 93%;
     outline: none;
     border: none;
+    text-align: center;
 }
 
 #search>div>button {
@@ -283,6 +302,14 @@ main {
     background-position: center;
     background-repeat: no-repeat;
     background-color: white;
+}
+
+#search>div>button:hover {
+    box-shadow: 0 0 1px 2px rgba(211, 211, 211, 0.3);
+}
+
+#search>div>button:active {
+    box-shadow: inset 0 0 2px 15px rgba(211, 211, 211, 0.2);
 }
 
 #users-data {
@@ -357,6 +384,11 @@ main {
     background-color: transparent;
     border-radius: 10%;
     outline: none;
+    cursor: pointer;
+}
+
+#user-status-button:active {
+    box-shadow: inset 0 0 2px 15px rgba(211, 211, 211, 0.2);
 }
 
 .status-active {
@@ -395,6 +427,7 @@ main {
     border-radius: 10%;
     outline: none;
     border: none;
+    cursor: pointer;
 }
 
 #more-options-button:hover {
@@ -403,4 +436,10 @@ main {
 
 #more-options-button:active {
     box-shadow: inset 0px 0px 4px 10px rgba(128, 128, 128, 0.2);
+}
+
+@media screen and (max-width: 1100px) {
+    aside {
+        display: none;
+    }
 }

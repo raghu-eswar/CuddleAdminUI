@@ -48,6 +48,7 @@ function createSearchBar() {
     let innerDiv = document.createElement("div");
     let searchInput = document.createElement("input");
     searchInput.type = "text";
+    searchInput.placeholder = "Search by Name, Email, Status, Role";
     let submitButton = document.createElement("button");
     innerDiv.appendChild(searchInput);
     innerDiv.appendChild(submitButton);
