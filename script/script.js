@@ -51,7 +51,7 @@ function createSearchBar() {
     searchInput.placeholder = "Search by Name, Email, Status, Role";
     let dataList = document.createElement("datalist");
     dataList.setAttribute("id", "users-suggestions");
-    searchInput.list = "users-suggestions";
+    searchInput.setAttribute("list", "users-suggestions");
     searchInput.addEventListener("input", showSuggestions);
     let submitButton = document.createElement("button");
     submitButton.addEventListener("click", filterUsers);
@@ -79,8 +79,22 @@ function filterUsers(event) {
     });
 }
 
-function showSuggestions() {
-
+function showSuggestions(event) {
+    let dataList = event.target.parentElement.querySelector("datalist");
+    dataList.innerHTML = "";
+    let searchWord = event.target.value;
+    let suggestions = new Set();
+    usersList.forEach(function(user) {
+        for (let key in user) {
+            if ((user[key] + "").toLowerCase().includes(searchWord))
+                suggestions.add(user[key]);
+        }
+    });
+    suggestions.forEach(function(value) {
+        let option = document.createElement("option");
+        option.value = value;
+        dataList.appendChild(option);
+    });
 }
 
 function createUsersData() {
