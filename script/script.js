@@ -15,6 +15,7 @@ var user3 = new User("Raghu Eswar", "raghueswar55@gmail.com", "Active", "User", 
 usersList.push(user1, user2, user3, user1, user2, user3);
 
 function showUserList() {
+    event.target.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
     let data = document.getElementById("data");
     while (data.firstChild) {
         data.firstChild.remove();
@@ -215,7 +216,18 @@ function createTableHeader() {
 function showSubMenu(event) {
     let target = (event.target === undefined) ? event : event.target;
     let hiddenLinks = target.parentElement.querySelector(".hidden-div");
-    hiddenLinks.style.display = (hiddenLinks.style.display == "block") ? "none" : "block"
+    if (hiddenLinks.style.display == "block") {
+        hiddenLinks.style.display = "none";
+    } else {
+        let activeButtons = target.parentElement.parentElement.querySelectorAll(".active-nav-link");
+        activeButtons.forEach(function(button) {
+            console.log(button.querySelector(".hidden-div"));
+            button.querySelector(".hidden-div").style.display = "none";
+            button.classList.remove("active-nav-link");
+        });
+        hiddenLinks.style.display = "block";
+        target.parentElement.setAttribute("class", "active-nav-link");
+    }
 }
 
 function triggerParent(event) {
