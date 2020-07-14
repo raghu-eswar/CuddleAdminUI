@@ -77,16 +77,18 @@ function filterUsers(event) {
             if ((user[key] + "").toLowerCase() === searchWord)
                 return user;
         }
-    })
-    filteredArray.forEach(function(user) {
-        userData.appendChild(createTableData(user));
     });
+    let contentDiv = document.createElement("div");
+    filteredArray.forEach(function(user) {
+        contentDiv.appendChild(createTableData(user));
+    });
+    userData.appendChild(contentDiv);
 }
 
 function showSuggestions(event) {
     let dataList = event.target.parentElement.querySelector("datalist");
     dataList.innerHTML = "";
-    let searchWord = event.target.value;
+    let searchWord = event.target.value.toLowerCase();
     let suggestions = new Set();
     usersList.forEach(function(user) {
         for (let key in user) {
@@ -105,12 +107,16 @@ function createUsersData() {
     let usersData = document.createElement("div");
     usersData.setAttribute("id", "users-data");
     let header = createTableHeader();
-    header.setAttribute("class", "table-row")
-    header.setAttribute("id", "table-header")
-    usersData.appendChild(header);
+    header.setAttribute("class", "table-row");
+    header.setAttribute("id", "table-header");
+    let headerDiv = document.createElement("div");
+    headerDiv.appendChild(header);
+    usersData.appendChild(headerDiv);
+    let bodyDiv = document.createElement("div");
     usersList.forEach(function(user) {
-        usersData.appendChild(createTableData(user));
-    })
+        bodyDiv.appendChild(createTableData(user));
+    });
+    usersData.appendChild(bodyDiv);
     return usersData;
 }
 
