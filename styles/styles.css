@@ -147,9 +147,10 @@ nav {
 }
 
 .visible-nav-link>span>img {
-    width: 1.5vw;
-    height: 1.5vw;
+    width: 1.6vw;
+    height: 1.6vw;
     border-radius: 50%;
+    fill: gray;
 }
 
 .nav-link {
@@ -182,8 +183,8 @@ main {
 }
 
 .custom-symbol-icon {
-    width: 1.5vw;
-    height: 1.5vw;
+    width: 1.4vw;
+    height: 1.4vw;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -192,7 +193,7 @@ main {
 }
 
 .icon-symbol {
-    font-size: 1.5vw;
+    font-size: 1.4vw;
     font-weight: bolder;
     font-family: Apple Color Emoji;
     text-align: center;
@@ -200,7 +201,7 @@ main {
 
 .menubar-icon {
     width: 1.5vw;
-    height: 1.5vw;
+    height: 1.2vw;
     display: flex;
     flex-direction: column;
 }
@@ -285,7 +286,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid gray;
+    box-shadow: 0 0 0.5px 2px lightgray;
 }
 
 #search>div>input {
@@ -305,7 +306,7 @@ main {
     border: white;
     background-color: transparent;
     cursor: pointer;
-    background-image: url("../images/search-icon.png");
+    background-image: url("../images/search-icon.svg");
     background-size: 60% 60%;
     background-position: center;
     background-repeat: no-repeat;
@@ -367,9 +368,9 @@ main {
 }
 
 #user-name>span>img {
-    width: 2vw;
-    height: 2vw;
-    background-color: transparent;
+    width: 1.4vw;
+    height: 1.4vw;
+    background-color: lightgray;
     border-radius: 50%;
     margin-right: 10px;
 }

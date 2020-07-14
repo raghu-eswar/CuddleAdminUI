@@ -122,7 +122,7 @@ function createTableData(user) {
     name.setAttribute("id", "user-name");
     let imageContainer = document.createElement("span");
     let profileImage = document.createElement("img");
-    profileImage.src = "../images/dummy-person-icon.jpg";
+    profileImage.src = "../images/dumpy-profile-icon.svg";
     imageContainer.appendChild(profileImage);
     let nameContainer = document.createElement("span");
     nameContainer.innerHTML = user.name;
