@@ -218,10 +218,10 @@ function showSubMenu(event) {
     let hiddenLinks = target.parentElement.querySelector(".hidden-div");
     if (hiddenLinks.style.display == "block") {
         hiddenLinks.style.display = "none";
+        target.parentElement.setAttribute("class", "active-nav-link");
     } else {
         let activeButtons = target.parentElement.parentElement.querySelectorAll(".active-nav-link");
         activeButtons.forEach(function(button) {
-            console.log(button.querySelector(".hidden-div"));
             button.querySelector(".hidden-div").style.display = "none";
             button.classList.remove("active-nav-link");
         });
