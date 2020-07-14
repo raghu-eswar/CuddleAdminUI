@@ -131,11 +131,15 @@ function createTableData(user) {
     status.setAttribute("id", "status");
     let statusButton = document.createElement("button");
     statusButton.setAttribute("id", "user-status-button");
-    if (user.status == "Active")
+    if (user.status == "Active") {
         statusButton.setAttribute("class", "status-active");
-    else
+        statusButton.value = 1;
+    } else {
         statusButton.setAttribute("class", "status-inactive");
+        statusButton.value = 0;
+    }
     statusButton.innerHTML = user.status;
+    statusButton.addEventListener("click", changeUserStatus);
     status.appendChild(statusButton);
     let role = document.createElement("div");
     role.innerHTML = user.role;
@@ -160,6 +164,18 @@ function createTableData(user) {
     tableData.appendChild(permission);
     tableData.appendChild(options);
     return tableData;
+}
+
+function changeUserStatus(event) {
+    if (event.target.value - 0) {
+        event.target.innerHTML = "Inactive";
+        event.target.setAttribute("class", "status-inactive");
+        event.target.value = 0;
+    } else {
+        event.target.innerHTML = "Active";
+        event.target.setAttribute("class", "status-active");
+        event.target.value = 1;
+    }
 }
 
 
