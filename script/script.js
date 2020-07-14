@@ -71,7 +71,7 @@ function filterUsers(event) {
     }
     let filteredArray = usersList.filter(function(user) {
         for (let key in user) {
-            if ((user[key] + "").toLowerCase().includes(searchWord))
+            if ((user[key] + "").toLowerCase() === searchWord)
                 return user;
         }
     })
