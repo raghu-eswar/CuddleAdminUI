@@ -348,6 +348,7 @@ main {
 
 #table-header {
     border-bottom: 1px solid gray;
+    font-weight: 600;
 }
 
 #table-header>#user-name {
@@ -425,6 +426,7 @@ main {
 
 #more-option {
     flex: 1 40px;
+    margin-right: 1vw;
 }
 
 #more-options-button {
