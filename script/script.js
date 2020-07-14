@@ -8,11 +8,14 @@ var User = function(name, email, status, role, lastLogin, permission) {
     this.permission = permission;
 }
 
-var user1 = new User("Raghu Eswar", "raghueswar55@gmail.com", "Active", "Administrator", "Not at", 1);
-var user2 = new User("Raghu Eswar", "raghueswar55@gmail.com", "Inactive", "Administrator", "Not at", 0);
+var user1 = new User("Raghu", "raghu55@gmail.com", "Active", "Administrator", "Not at", 1);
+var user2 = new User("Eswar", "eswar55@gmail.com", "Inactive", "Administrator", "Not at", 0);
 var user3 = new User("Raghu Eswar", "raghueswar55@gmail.com", "Active", "User", "Not at", 1);
+var user4 = new User("Raghu", "raghu@gmail.com", "Active", "Administrator", "Not at", 1);
+var user5 = new User("Eswar", "eswar@gmail.com", "Inactive", "Administrator", "Not at", 0);
+var user6 = new User("Raghu Eswar", "raghueswar@gmail.com", "Active", "User", "Not at", 1);
 
-usersList.push(user1, user2, user3, user1, user2, user3);
+usersList.push(user1, user2, user3, user4, user5, user6);
 
 function showUserList() {
     event.target.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
@@ -168,11 +171,18 @@ function createTableData(user) {
 }
 
 function changeUserStatus(event) {
+    let userMail = event.target.parentElement.parentElement.querySelector("#email").innerHTML;
+    let user = usersList.filter(function(user) {
+        if (user.email === userMail)
+            return user;
+    })[0];
     if (event.target.value - 0) {
+        user.status = "Inactive";
         event.target.innerHTML = "Inactive";
         event.target.setAttribute("class", "status-inactive");
         event.target.value = 0;
     } else {
+        user.status = "Active";
         event.target.innerHTML = "Active";
         event.target.setAttribute("class", "status-active");
         event.target.value = 1;
