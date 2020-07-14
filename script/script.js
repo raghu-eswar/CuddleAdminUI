@@ -8,9 +8,9 @@ var User = function(name, email, status, role, lastLogin, permission) {
     this.permission = permission;
 }
 
-var user1 = new User("Raghu Eswar", "raghueswar55@gmail.com", 1, "Administrator", "Not at", 1);
-var user2 = new User("Raghu Eswar", "raghueswar55@gmail.com", 0, "Administrator", "Not at", 0);
-var user3 = new User("Raghu Eswar", "raghueswar55@gmail.com", 1, "Administrator", "Not at", 1);
+var user1 = new User("Raghu Eswar", "raghueswar55@gmail.com", "Active", "Administrator", "Not at", 1);
+var user2 = new User("Raghu Eswar", "raghueswar55@gmail.com", "Inactive", "Administrator", "Not at", 0);
+var user3 = new User("Raghu Eswar", "raghueswar55@gmail.com", "Active", "User", "Not at", 1);
 
 usersList.push(user1, user2, user3, user1, user2, user3);
 
@@ -49,11 +49,38 @@ function createSearchBar() {
     let searchInput = document.createElement("input");
     searchInput.type = "text";
     searchInput.placeholder = "Search by Name, Email, Status, Role";
+    let dataList = document.createElement("datalist");
+    dataList.setAttribute("id", "users-suggestions");
+    searchInput.list = "users-suggestions";
+    searchInput.addEventListener("input", showSuggestions);
     let submitButton = document.createElement("button");
+    submitButton.addEventListener("click", filterUsers);
     innerDiv.appendChild(searchInput);
+    innerDiv.appendChild(dataList);
     innerDiv.appendChild(submitButton);
     searchBar.appendChild(innerDiv);
     return searchBar;
+}
+
+function filterUsers(event) {
+    let userData = document.getElementById("users-data");
+    let searchWord = event.target.parentElement.querySelector("input").value.toLowerCase();
+    while (userData.childElementCount > 1) {
+        userData.lastChild.remove();
+    }
+    let filteredArray = usersList.filter(function(user) {
+        for (let key in user) {
+            if ((user[key] + "").toLowerCase().includes(searchWord))
+                return user;
+        }
+    })
+    filteredArray.forEach(function(user) {
+        userData.appendChild(createTableData(user));
+    });
+}
+
+function showSuggestions() {
+
 }
 
 function createUsersData() {
@@ -90,13 +117,11 @@ function createTableData(user) {
     status.setAttribute("id", "status");
     let statusButton = document.createElement("button");
     statusButton.setAttribute("id", "user-status-button");
-    if (user.status) {
+    if (user.status == "Active")
         statusButton.setAttribute("class", "status-active");
-        statusButton.innerHTML = "Active";
-    } else {
+    else
         statusButton.setAttribute("class", "status-inactive");
-        statusButton.innerHTML = "Inactive";
-    }
+    statusButton.innerHTML = user.status;
     status.appendChild(statusButton);
     let role = document.createElement("div");
     role.innerHTML = user.role;
