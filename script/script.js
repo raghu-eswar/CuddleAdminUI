@@ -67,18 +67,21 @@ function createSearchBar() {
 }
 
 function filterUsers(event) {
-    debugger;
     let tableData = document.getElementById("table-data");
     let searchWord = event.target.parentElement.querySelector("input").value.toLowerCase();
+
     while (tableData.firstChild) {
         tableData.firstChild.remove();
     }
-    let filteredArray = usersList.filter(function(user) {
-        for (let key in user) {
-            if ((user[key] + "").toLowerCase() === searchWord)
-                return user;
-        }
-    });
+    var filteredArray = usersList;
+    if (searchWord.length > 0) {
+        var filteredArray = usersList.filter(function(user) {
+            for (let key in user) {
+                if ((user[key] + "").toLowerCase() === searchWord)
+                    return user;
+            }
+        });
+    }
     filteredArray.forEach(function(user) {
         tableData.appendChild(createTableRow(user));
     });
@@ -273,6 +276,19 @@ function createTableHeader() {
     row.appendChild(options);
     header.appendChild(row);
     return header;
+}
+
+function showMenu(event) {
+    let menu = document.getElementsByTagName("aside")[0];
+    if (menu.style.display == "block") {
+        menu.style.display = "none";
+        window.removeEventListener("click", showMenu);
+    } else {
+        menu.style.display = "block";
+        window.addEventListener("click", showMenu);
+        event.stopPropagation();
+    }
+
 }
 
 function showSubMenu(event) {
