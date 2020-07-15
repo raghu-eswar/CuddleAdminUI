@@ -15,7 +15,7 @@ var user4 = new User("Raghu", "raghu@gmail.com", "Active", "Administrator", "Not
 var user5 = new User("Eswar", "eswar@gmail.com", "Inactive", "Administrator", "Not at", 0);
 var user6 = new User("Raghu Eswar", "raghueswar@gmail.com", "Active", "User", "Not at", 1);
 
-usersList.push(user1, user2, user3, user4, user5, user6);
+usersList.push(user1, user2, user3, user4, user5, user6, user1, user2, user3, user4, user5, user6, user1, user2, user3, user4, user5, user6);
 
 function showUserList() {
     event.target.style.backgroundColor = "rgba(255, 255, 255, 0.15)";
@@ -67,10 +67,11 @@ function createSearchBar() {
 }
 
 function filterUsers(event) {
-    let userData = document.getElementById("users-data");
+    debugger;
+    let tableData = document.getElementById("table-data");
     let searchWord = event.target.parentElement.querySelector("input").value.toLowerCase();
-    while (userData.childElementCount > 1) {
-        userData.lastChild.remove();
+    while (tableData.firstChild) {
+        tableData.firstChild.remove();
     }
     let filteredArray = usersList.filter(function(user) {
         for (let key in user) {
@@ -78,11 +79,9 @@ function filterUsers(event) {
                 return user;
         }
     });
-    let contentDiv = document.createElement("div");
     filteredArray.forEach(function(user) {
-        contentDiv.appendChild(createTableData(user));
+        tableData.appendChild(createTableRow(user));
     });
-    userData.appendChild(contentDiv);
 }
 
 function showSuggestions(event) {
@@ -106,26 +105,26 @@ function showSuggestions(event) {
 function createUsersData() {
     let usersData = document.createElement("div");
     usersData.setAttribute("id", "users-data");
-    let header = createTableHeader();
-    header.setAttribute("class", "table-row");
-    header.setAttribute("id", "table-header");
-    let headerDiv = document.createElement("div");
-    headerDiv.appendChild(header);
-    usersData.appendChild(headerDiv);
-    let bodyDiv = document.createElement("div");
+    let tableData = document.createElement("div");
+    tableData.setAttribute("id", "table-data");
+    usersData.appendChild(createTableHeader());
     usersList.forEach(function(user) {
-        bodyDiv.appendChild(createTableData(user));
+        tableData.appendChild(createTableRow(user));
     });
-    usersData.appendChild(bodyDiv);
+    usersData.appendChild(tableData);
     return usersData;
 }
 
-function createTableData(user) {
-    let tableData = document.createElement("div");
-    tableData.setAttribute("id", "table-data");
-    tableData.setAttribute("class", "table-row");
+function createTableRow(user) {
+    let row = document.createElement("div");
+    row.setAttribute("class", "table-row");
+    let nameData = document.createElement("div");
+    let nameHeader = document.createElement("div");
+    nameHeader.setAttribute("class", "table-header-cell");
+    nameHeader.innerHTML = "Name";
     let name = document.createElement("div");
     name.setAttribute("id", "user-name");
+    name.setAttribute("class", "table-cell");
     let imageContainer = document.createElement("span");
     let profileImage = document.createElement("img");
     profileImage.src = "../images/dumpy-profile-icon.svg";
@@ -134,11 +133,27 @@ function createTableData(user) {
     nameContainer.innerHTML = user.name;
     name.appendChild(imageContainer);
     name.appendChild(nameContainer);
+    nameData.appendChild(nameHeader);
+    nameData.appendChild(name);
+    row.appendChild(nameData);
+    let emailData = document.createElement("div");
+    let emailHeader = document.createElement("div");
+    emailHeader.setAttribute("class", "table-header-cell");
+    emailHeader.innerHTML = "Email";
     let email = document.createElement("div");
     email.innerHTML = user.email;
     email.setAttribute("id", "email");
+    email.setAttribute("class", "table-cell");
+    emailData.appendChild(emailHeader);
+    emailData.appendChild(email);
+    row.appendChild(emailData);
+    let statusData = document.createElement("div");
+    let statusHeader = document.createElement("div");
+    statusHeader.setAttribute("class", "table-header-cell");
+    statusHeader.innerHTML = "Status";
     let status = document.createElement("div");
     status.setAttribute("id", "status");
+    status.setAttribute("class", "table-cell");
     let statusButton = document.createElement("button");
     statusButton.setAttribute("id", "user-status-button");
     if (user.status == "Active") {
@@ -151,33 +166,61 @@ function createTableData(user) {
     statusButton.innerHTML = user.status;
     statusButton.addEventListener("click", changeUserStatus);
     status.appendChild(statusButton);
+    statusData.appendChild(statusHeader);
+    statusData.appendChild(status);
+    row.appendChild(statusData);
+    let roleData = document.createElement("div");
+    let roleHeader = document.createElement("div");
+    roleHeader.setAttribute("class", "table-header-cell");
+    roleHeader.innerHTML = "Role";
     let role = document.createElement("div");
     role.innerHTML = user.role;
     role.setAttribute("id", "role");
+    role.setAttribute("class", "table-cell");
+    roleData.appendChild(roleHeader);
+    roleData.appendChild(role);
+    row.appendChild(roleData);
+    let lastLoginData = document.createElement("div");
+    let lastLoginHeader = document.createElement("div");
+    lastLoginHeader.setAttribute("class", "table-header-cell");
+    lastLoginHeader.innerHTML = "Last Login";
     let lastLogin = document.createElement("div");
     lastLogin.innerHTML = user.lastLogin;
     lastLogin.setAttribute("id", "last-login");
+    lastLogin.setAttribute("class", "table-cell");
+    lastLoginData.appendChild(lastLoginHeader);
+    lastLoginData.appendChild(lastLogin);
+    row.appendChild(lastLoginData);
+    let permissionData = document.createElement("div");
+    let permissionHeader = document.createElement("div");
+    permissionHeader.setAttribute("class", "table-header-cell");
+    permissionHeader.innerHTML = "Permission";
     let permission = document.createElement("div");
     permission.innerHTML = (user.permission) ? "Valid" : "Invalid";
     permission.setAttribute("id", "permission");
+    permission.setAttribute("class", "table-cell");
+    permissionData.appendChild(permissionHeader);
+    permissionData.appendChild(permission);
+    row.appendChild(permissionData);
+    let optionsData = document.createElement("div");
+    let optionsHeader = document.createElement("div");
+    optionsHeader.setAttribute("class", "table-header-cell");
+    optionsHeader.innerHTML = "More";
     let options = document.createElement("div");
     options.setAttribute("id", "more-option");
+    options.setAttribute("class", "table-cell");
     let moreOptionsButton = document.createElement("button");
     moreOptionsButton.setAttribute("id", "more-options-button")
     moreOptionsButton.innerHTML = "...";
     options.appendChild(moreOptionsButton);
-    tableData.appendChild(name);
-    tableData.appendChild(email);
-    tableData.appendChild(status);
-    tableData.appendChild(role);
-    tableData.appendChild(lastLogin);
-    tableData.appendChild(permission);
-    tableData.appendChild(options);
-    return tableData;
+    optionsData.appendChild(optionsHeader);
+    optionsData.appendChild(options);
+    row.appendChild(optionsData);
+    return row;
 }
 
 function changeUserStatus(event) {
-    let userMail = event.target.parentElement.parentElement.querySelector("#email").innerHTML;
+    let userMail = event.target.parentElement.parentElement.parentElement.querySelector("#email").innerHTML;
     let user = usersList.filter(function(user) {
         if (user.email === userMail)
             return user;
@@ -195,37 +238,40 @@ function changeUserStatus(event) {
     }
 }
 
-
 function createTableHeader() {
     let header = document.createElement("div");
+    header.setAttribute("id", "table-header");
+    let row = document.createElement("div");
+    row.setAttribute("class", "table-row");
     let name = document.createElement("div");
     name.innerHTML = "Name"
-    name.setAttribute("id", "user-name");
+    name.setAttribute("class", "table-header-cell");
     let email = document.createElement("div");
     email.innerHTML = "Email";
-    email.setAttribute("id", "email");
+    email.setAttribute("class", "table-header-cell");
     let status = document.createElement("div");
     status.innerHTML = "Status";
-    status.setAttribute("id", "status");
+    status.setAttribute("class", "table-header-cell");
     let role = document.createElement("div");
     role.innerHTML = "Roll";
-    role.setAttribute("id", "role");
+    role.setAttribute("class", "table-header-cell");
     let lastLogin = document.createElement("div");
     lastLogin.innerHTML = "Last Login";
-    lastLogin.setAttribute("id", "last-login");
+    lastLogin.setAttribute("class", "table-header-cell");
     let permission = document.createElement("div");
     permission.innerHTML = "Permission";
-    permission.setAttribute("id", "permission");
+    permission.setAttribute("class", "table-header-cell");
     let options = document.createElement("div");
     options.innerHTML = "Options";
-    options.setAttribute("id", "more-option");
-    header.appendChild(name);
-    header.appendChild(email);
-    header.appendChild(status);
-    header.appendChild(role);
-    header.appendChild(lastLogin);
-    header.appendChild(permission);
-    header.appendChild(options);
+    options.setAttribute("class", "table-header-cell");
+    row.appendChild(name);
+    row.appendChild(email);
+    row.appendChild(status);
+    row.appendChild(role);
+    row.appendChild(lastLogin);
+    row.appendChild(permission);
+    row.appendChild(options);
+    header.appendChild(row);
     return header;
 }
 
