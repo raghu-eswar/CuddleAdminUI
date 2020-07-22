@@ -496,6 +496,9 @@ div.table-row>div:nth-child(7) {
     #data {
         grid-template-rows: 1fr 1fr 11fr;
     }
+    aside {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 1100px) {
