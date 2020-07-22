@@ -130,7 +130,7 @@ function createTableRow(user) {
     name.setAttribute("class", "table-cell");
     let imageContainer = document.createElement("span");
     let profileImage = document.createElement("img");
-    profileImage.src = "../images/dumpy-profile-icon.svg";
+    profileImage.src = "../images/dummy-profile-icon.svg";
     imageContainer.appendChild(profileImage);
     let nameContainer = document.createElement("span");
     nameContainer.innerHTML = user.name;
